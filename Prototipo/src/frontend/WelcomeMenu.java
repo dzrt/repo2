@@ -110,6 +110,11 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
+        jTextField24 = new javax.swing.JTextField();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jTextField25 = new javax.swing.JTextField();
+        jButton40 = new javax.swing.JButton();
         jPanel34 = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
         jPanel36 = new javax.swing.JPanel();
@@ -132,7 +137,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         jButton34 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
         jLabel52 = new javax.swing.JLabel();
@@ -231,7 +236,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -657,15 +662,46 @@ public class WelcomeMenu extends javax.swing.JFrame {
 
         jTabbedPane5.addTab("Editais", jPanel32);
 
+        jLabel76.setText("Pergunta");
+
+        jLabel77.setText("Resposta");
+
+        jButton40.setText("Criar");
+
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
         jPanel33Layout.setHorizontalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                            .addComponent(jLabel76, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField24)
+                            .addComponent(jTextField25, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)))
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jButton40)))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jButton40)
+                .addGap(65, 65, 65))
         );
 
         jTabbedPane5.addTab("FAQs", jPanel33);
@@ -930,7 +966,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
 
         jLabel50.setText("Fazer backup:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente" }));
 
         jButton34.setText("Fazer Backup Agora...");
 
@@ -1629,7 +1665,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aberto", "Fechado", "Cancelado" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aberto", "Fechado", "Cancelado" }));
 
         jButton4.setText("Registar");
 
@@ -3577,6 +3613,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -3679,6 +3716,8 @@ public class WelcomeMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelBackground;
@@ -3837,6 +3876,8 @@ public class WelcomeMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

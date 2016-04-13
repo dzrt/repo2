@@ -76,7 +76,7 @@ public class bd {
         }
         return i ;
     }
-    /**This method return a multidimensional array that contains the days,events and descriptions of the giver username's agenda.
+    /**This method return a multidimensional array that contains the days, events and descriptions of the given username's agenda.
      * 
      * @param username 
      */

@@ -20,7 +20,7 @@ public class bd {
     public bd(){
         try{
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd1","root","root");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd1","root","");
         statement = connection.createStatement();
         }catch(Exception e){
             System.out.println(e);
@@ -43,60 +43,56 @@ public class bd {
         }
         return flag;
     }
-    /**This method returns the next 7 days including today's date 
-     * 
-     * @return Array
-     */
-    public String[] getNext7Days(){
-        //Date format
-        String dias[] = new String[7];
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-        for(int i = 0;i <= 6;i++){
-             cal.add(Calendar.DATE, i);            
-             dias[i] = sdf.format(cal.getTime());
-             cal.add(Calendar.DATE,-i);
-        }
-    return dias;
-    }
-    /**This method return the number of events a given username has 
-     * 
-     * @param username
-     * @return int
-     */
-    public int getAgendaRows(String username){
-        int i = 0;
-        String query = "SELECT agenda.day,agenda.urgency,agenda.description FROM agenda WHERE agenda.username='"+username+"'";
+    public boolean isAdmin(String username){
+        boolean flag = false;
         try{
-        result = statement.executeQuery(query);
-        while(result.next()){
-            i++;
-        }
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return i ;
-    }
-    /**This method return a multidimensional array that contains the days, events and descriptions of the given username's agenda.
-     * 
-     * @param username 
-     */
-    public String[][] getAgenda(String username){
-        int i = getAgendaRows(username);
-        String array[][] = new String[i][3];
-        String query = "SELECT agenda.day,agenda.urgency,agenda.description FROM agenda WHERE agenda.username='"+username+"'";
-        try{
+            String query = "SELECT user.type FROM user WHERE user.username='"+username+"'";
             result = statement.executeQuery(query);
-            int ii = 0;
-            while(result.next()){
-                array[ii][0] = result.getString("day");
-                array[ii][1] = result.getString("urgency");
-                array[ii][2] = result.getString("description");
-                ii++;
+            result.next();
+            String type = result.getString("type");
+            if(type.equals("adm")){
+                flag = true;
             }
         }catch(Exception e){
             System.out.println(e);
         }
-        return array;
+        return flag;
+    }
+    public String[] getUsers(){
+        int i = 0;
+        int ii = 0;
+        try{
+            String query = "SELECT * FROM user";
+            result = statement.executeQuery(query);
+            while(result.next()){
+                i++;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        String users[] = new String[i];
+        try{
+          String query2 = "SELECT user.username FROM user";
+            result = statement.executeQuery(query2);
+            while(result.next()){
+                users[ii] = result.getString("username");
+                ii++;
+            }  
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return users;
+    }
+    public String getType(String username){
+        String type = "";
+        try{
+            String query = "SELECT user.type FROM user WHERE user.username='"+username+"'";
+            result = statement.executeQuery(query);
+            result.next();
+            type = result.getString("type");
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return type;
     }
 }

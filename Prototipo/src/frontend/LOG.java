@@ -6,6 +6,8 @@
 package frontend;
 
 import backend.bd;
+import backend.user;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -154,7 +156,7 @@ public class LOG extends javax.swing.JFrame {
            password+= caracters[i];
        }
         if(l.isUser(jTextField1.getText(),password)){
-            WelcomeMenu p = new WelcomeMenu();
+            WelcomeMenu p = new WelcomeMenu(new user(jTextField1.getText(),password,l.getType(jTextField1.getText())));
             p.pack();
             p.setExtendedState(p.MAXIMIZED_BOTH); 
             p.setVisible(true);
@@ -165,7 +167,7 @@ public class LOG extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Dados inválidos,introduza novamente!", "" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed

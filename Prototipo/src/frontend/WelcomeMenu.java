@@ -33,6 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
+import net.proteanit.sql.DbUtils;
 //import net.proteanit.sql.DbUtils;
 
 /**
@@ -53,7 +54,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd1", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd1", "root", "");
            
             
         } catch (Exception e) {
@@ -94,6 +95,13 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanelBackground = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabelBackground = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton34 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
+        jLabel52 = new javax.swing.JLabel();
         jPanelConfigureWebSite = new javax.swing.JPanel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel32 = new javax.swing.JPanel();
@@ -134,13 +142,6 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jTable23 = new javax.swing.JTable();
         jLabel53 = new javax.swing.JLabel();
         jButton36 = new javax.swing.JButton();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
-        jButton34 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
-        jLabel52 = new javax.swing.JLabel();
         jPanelListEmployees = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaprod = new javax.swing.JTable();
@@ -148,7 +149,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jLabelPE = new javax.swing.JLabel();
         jLabelPEListarPor = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelProcesses = new javax.swing.JTable();
         jComboBoxListarPorPE = new javax.swing.JComboBox();
         jLabelPEProcurar = new javax.swing.JLabel();
         jTextFieldProcurarPE = new javax.swing.JTextField();
@@ -236,7 +237,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -579,6 +580,72 @@ public class WelcomeMenu extends javax.swing.JFrame {
         );
 
         jPanelBackground.add(jPanel12, "card8");
+
+        jLabel49.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel49.setText("Configurar Backups");
+
+        jLabel50.setText("Fazer backup:");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente" }));
+
+        jButton34.setText("Fazer Backup Agora...");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+
+        jButton35.setText("Guardar Alterações");
+
+        jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/database-icon.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(194, 194, 194))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(jButton34)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)))
+                .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(237, 237, 237))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton34)
+                            .addComponent(jButton35)))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(250, Short.MAX_VALUE))
+        );
+
+        jPanelBackground.add(jPanel15, "card8");
 
         jLabel63.setText("Título:");
 
@@ -961,67 +1028,6 @@ public class WelcomeMenu extends javax.swing.JFrame {
 
         jPanelBackground.add(jPanel28, "card9");
 
-        jLabel49.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel49.setText("Configurar Backups");
-
-        jLabel50.setText("Fazer backup:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diariamente", "Semanalmente", "Quinzenalmente", "Mensalmente" }));
-
-        jButton34.setText("Fazer Backup Agora...");
-
-        jButton35.setText("Guardar Alterações");
-
-        jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frontend/database-icon.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(194, 194, 194))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jButton34)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)))
-                .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton34)
-                            .addComponent(jButton35)))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(250, Short.MAX_VALUE))
-        );
-
-        jPanelBackground.add(jPanel15, "card8");
-
         tabelaprod.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -1055,16 +1061,16 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanelListEmployeesLayout.setHorizontalGroup(
             jPanelListEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListEmployeesLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(681, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1079, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanelListEmployeesLayout.setVerticalGroup(
             jPanelListEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListEmployeesLayout.createSequentialGroup()
-                .addContainerGap(252, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(267, 267, 267))
+            .addGroup(jPanelListEmployeesLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(527, Short.MAX_VALUE))
         );
 
         jPanelBackground.add(jPanelListEmployees, "card5");
@@ -1075,7 +1081,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jLabelPEListarPor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelPEListarPor.setText("Listar Por:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelProcesses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -1094,7 +1100,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelProcesses);
 
         jComboBoxListarPorPE.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Data", "Número" }));
         jComboBoxListarPorPE.addActionListener(new java.awt.event.ActionListener() {
@@ -1130,7 +1136,8 @@ public class WelcomeMenu extends javax.swing.JFrame {
                         .addComponent(jLabelPEListarPor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jComboBoxListarPorPE, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanelListarPELayout.setVerticalGroup(
             jPanelListarPELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1147,7 +1154,8 @@ public class WelcomeMenu extends javax.swing.JFrame {
                             .addComponent(jTextFieldProcurarPE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxListarPorPE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanelBackground.add(jPanelListarPE, "card3");
@@ -1568,7 +1576,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)))
-                .addGap(0, 256, Short.MAX_VALUE))
+                .addGap(0, 249, Short.MAX_VALUE))
         );
         jPanelAppBookLayout.setVerticalGroup(
             jPanelAppBookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1665,7 +1673,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aberto", "Fechado", "Cancelado" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aberto", "Fechado", "Cancelado" }));
 
         jButton4.setText("Registar");
 
@@ -3016,7 +3024,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxListarPorPEActionPerformed
 
     private void jButtonListarPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarPEActionPerformed
-        String tipo = "Empresa";
+        String tipo = "enterprise";
         jPanelBackground.removeAll();
         jPanelBackground.repaint();
         jPanelBackground.revalidate();
@@ -3024,6 +3032,16 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanelBackground.add(jPanelListarPE);
         jPanelBackground.repaint();
         jPanelBackground.revalidate();
+           
+        
+        try{
+            String selection = "SELECT * FROM process WHERE process_type='" + tipo + "'";
+            pst = conn.prepareStatement(selection);
+            rs = pst.executeQuery(selection);
+            tabelProcesses.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButtonListarPEActionPerformed
 
     private void jButtonRegistarPEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarPEActionPerformed
@@ -3124,10 +3142,10 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanelBackground.repaint();
         jPanelBackground.revalidate();
         try{
-            String selection = "SELECT * FROM funcionarios";
+            String selection = "SELECT * FROM workers";
             pst = conn.prepareStatement(selection);
             rs = pst.executeQuery(selection);
-           // tabelaprod.setModel(DbUtils.resultSetToTableModel(rs));
+            tabelaprod.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -3501,7 +3519,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistarPIActionPerformed
 
     private void jButtonListarPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarPIActionPerformed
-         String tipo = "Individual";
+        String tipo = "individual";
         jPanelBackground.removeAll();
         jPanelBackground.repaint();
         jPanelBackground.revalidate();
@@ -3509,6 +3527,16 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanelBackground.add(jPanelListarPE);
         jPanelBackground.repaint();
         jPanelBackground.revalidate();
+           
+        
+        try{
+            String selection = "SELECT * FROM process WHERE process_type='" + tipo + "'";
+            pst = conn.prepareStatement(selection);
+            rs = pst.executeQuery(selection);
+            tabelProcesses.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButtonListarPIActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
@@ -3530,6 +3558,11 @@ public class WelcomeMenu extends javax.swing.JFrame {
         jPanelFuncRegistar.revalidate();
         
     }//GEN-LAST:event_jButton39ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        JF_Mysql janelaProcura = new JF_Mysql();
+        janelaProcura.setVisible(true);
+    }//GEN-LAST:event_jButton34ActionPerformed
 /*public void keyReleased(KeyEvent ke) 
 {
     if(ke.getKeyCode() == KeyEvent.VK_BACK_SPACE)
@@ -3829,7 +3862,6 @@ public class WelcomeMenu extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable12;
@@ -3886,6 +3918,7 @@ public class WelcomeMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextFieldProcurarPE;
+    private javax.swing.JTable tabelProcesses;
     private javax.swing.JTable tabelaprod;
     // End of variables declaration//GEN-END:variables
 }

@@ -140,6 +140,58 @@ public String[][] getFaq(){
     return faqs;
 }
 
+
+public Integer[] getNullFaqs(String parameter){
+    Integer array[] = new Integer[getNullFaqsAux(parameter)];
+    int i = 0;
+    try{
+        result = statement.executeQuery("SELECT faq.id FROM faq WHERE faq."+parameter+"=''");
+        while(result.next()){
+            array[i] = result.getInt("id");
+            i++;
+        }
+    }catch(Exception e){
+        System.out.println(e);
+    }
+    return array;
+}
+
+public boolean hasQuestion(int id){
+    boolean bit = false;
+    try{
+        result = statement.executeQuery("SELECT faq.q FROM faq WHERE faq.id="+id);
+        result.next();
+        bit = (result.getString("q").equals("")) ? false : true ;
+    }catch(Exception e){
+        
+    }
+    return bit;
+}
+
+public boolean hasAnswer(int id){
+    boolean bit = false;
+    try{
+        result = statement.executeQuery("SELECT faq.a FROM faq WHERE faq.id="+id);
+        result.next();
+        bit = (result.getString("a").equals("")) ? false : true ;
+    }catch(Exception e){
+    }
+    return bit;
+}
+
+public int getNullFaqsAux(String parameter){
+    int number = 0;
+    try{
+        result = statement.executeQuery("SELECT faq.id FROM faq WHERE faq."+parameter+"=''");
+        while(result.next()){
+            number++;
+        }
+    }catch(Exception e){
+        System.out.println(e);
+    }
+    return number;
+}
+
 public void setList(boolean bit){
     this.list = bit;
 }

@@ -680,6 +680,11 @@ public class WelcomeMenu extends javax.swing.JFrame{
 
         jLabel80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Delete_1.png"))); // NOI18N
         jLabel80.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel80.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel80MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -3685,22 +3690,31 @@ public class WelcomeMenu extends javax.swing.JFrame{
                     jButton40.setEnabled(true);
                 }
             }else{
+                try{
             if(!parts[1].equals(jTextArea10.getText().trim()) || !faq.isAnswer(jTextArea11.getText().trim())){
                 jButton40.setEnabled(true);
             }else{
                 jButton40.setEnabled(false);
             }
+                }catch(Exception e){
+                    if(!this.faq.hasAnswer(parseInt(parts[0])) && !jTextArea11.getText().trim().equals("")){
+                        jButton40.setEnabled(true);
+                    }else{jButton40.setEnabled(false);}
+                    if(!this.faq.hasQuestion(parseInt(parts[0])) && !jTextArea10.getText().trim().equals("")){
+                        jButton40.setEnabled(true);
+                    }else{jButton40.setEnabled(false);}
+                }
             }}else{
         }
-    }
+        }
     
     public void VerifyChanges(){
         if(this.agendaui.getallowlisteners()){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String jclnd = sdf.format(jCalendar1.getDate());
-        if(this.agenda.DescriptionChange(jclnd,jTextArea1.getText()) && this.agenda.IsDay(jclnd)){
+        if(this.agenda.DescriptionChange(jclnd,jTextArea1.getText().trim()) && this.agenda.IsDay(jclnd)){
             jButton3.setEnabled(true);
-        }else if(!this.agenda.IsDay(jclnd) && !jTextArea1.getText().isEmpty()){
+        }else if(!this.agenda.IsDay(jclnd) && !jTextArea1.getText().trim().isEmpty()){
             jButton3.setEnabled(true);
         }else{
             jButton3.setEnabled(false);
@@ -4176,13 +4190,24 @@ public class WelcomeMenu extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+    public void UpdateFaqUI(){
+        list1.removeAll();
+        String array[][] = this.faq.getFaq();
+            for(int row = 0;row <= array.length - 1;row++){
+                list1.add(array[row][2]+" -"+array[row][0]);
+            }
+            list1.add("Novo...");
+            
+    }
+    
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
         // TODO add your handling code here:
         int button = JOptionPane.YES_NO_OPTION;
         if(list1.getSelectedItem().equals("Novo...")){
            int result = JOptionPane.showConfirmDialog(null,"Tem a certeza que deseja criar o novo FAQ?","Warning",button);
            if(result == JOptionPane.YES_OPTION){
-            this.faq.createFaq(jTextArea10.getText(),jTextArea11.getText());   
+            this.faq.createFaq(jTextArea10.getText(),jTextArea11.getText()); 
+            UpdateFaqUI();
            }else{}
         }else{
            String parts[] = list1.getSelectedItem().split(" - ");
@@ -4192,6 +4217,8 @@ public class WelcomeMenu extends javax.swing.JFrame{
                 int result2 = JOptionPane.showConfirmDialog(null,"Tem a certeza que deseja aplicar as alterações?","Warning",button);
                 if(result2 == JOptionPane.YES_OPTION){
                     this.faq.UpdateFaq(parseInt(parts[0]),jTextArea10.getText(),jTextArea11.getText());
+                    UpdateFaqUI();
+                    
                 }else{}
                }
            }
@@ -4207,7 +4234,7 @@ public class WelcomeMenu extends javax.swing.JFrame{
     private void list1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_list1ItemStateChanged
         // TODO add your handling code here:
         jButton40.setEnabled(false);
-        String parts[] =  list1.getSelectedItem().split(" - ");
+        String parts[] =  list1.getSelectedItem().split(" -");
         String array[][] = new faqUI().getFaq();
                    for(int row = 0;row <= array.length - 1;row++){
                        if(array[row][2].equals(parts[0])){
@@ -4227,8 +4254,45 @@ public class WelcomeMenu extends javax.swing.JFrame{
 
     private void jLabel79MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel79MouseClicked
         // TODO add your handling code here:
-        
+        if(jTextArea10.getText().trim().equals("")){}else{
+        String parts[] = list1.getSelectedItem().split(" - ");
+        String array[][] = this.faq.getFaq();
+        int window = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null,"Deseja remover a pergunta?","Warning",window);
+        if(result == JOptionPane.YES_OPTION){
+            for(int row = 0;row <= array.length - 1;row++){
+                if(parts[0].equals(array[row][2])){
+                    this.faq.DeleteQuestion(parseInt(array[row][2]));
+                    UpdateFaqUI();
+                    this.faq.setAllowListeners(false);
+                    jTextArea10.setText("");
+                    this.faq.setAllowListeners(true);
+                }
+            }
+        }else{}}
     }//GEN-LAST:event_jLabel79MouseClicked
+
+    private void jLabel80MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel80MouseClicked
+        // TODO add your handling code here:
+        if(jTextArea11.getText().trim().equals("")){
+        }else{
+        String parts[] = list1.getSelectedItem().split(" - ");
+        String array[][] = this.faq.getFaq();
+        int window = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null,"Deseja remover a resposta?","Warning",window);
+        if(result == JOptionPane.YES_OPTION){
+           for(int row = 0;row <= array.length - 1;row++){
+               if(parts[0].equals(array[row][2])){
+                   this.faq.DeleteAnswer(parseInt(array[row][2]));
+                   UpdateFaqUI();
+                   this.faq.setAllowListeners(false);
+                   jTextArea11.setText("");
+                   this.faq.setAllowListeners(true);
+               }
+           } 
+        }else{}
+        }
+    }//GEN-LAST:event_jLabel80MouseClicked
 /*public void keyReleased(KeyEvent ke) 
 {
     if(ke.getKeyCode() == KeyEvent.VK_BACK_SPACE)
